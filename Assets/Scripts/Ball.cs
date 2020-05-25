@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
     [SerializeField] Paddle paddle1;
     [SerializeField] float xPush = 2f;
     [SerializeField] float yPush = 10f;
+    [SerializeField]public GameObject brickOnCollision;
+    [SerializeField] AudioClip[] clips;
 
     // State 
     Vector2 paddleToBall;
@@ -44,7 +46,34 @@ public class Ball : MonoBehaviour
 
         var paddlePos = new Vector2(paddle1.transform.position.x, paddle1.transform.position.y);
         transform.position = paddleToBall + paddlePos;
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        AudioClip clip = null;
+        brickOnCollision = collision.gameObject;
+        if (hasGameStarted)
+        {
+            switch (brickOnCollision.tag)
+            {
+                case "Brick1":
+                    clip = clips[0];
+                    break;
+                case "Brick2":
+                    clip = clips[1];
+                    break;
+                case "Brick3":
+                    clip = clips[2];
+                    break;
+                case "Brick4":
+                    clip = clips[3];
+                    break;
+                default:
+                    clip = clips[4];
+                    break;
+            }
+            AudioSource.PlayClipAtPoint(clip, new Vector3(), 1f);
+        }
 
     }
 }
