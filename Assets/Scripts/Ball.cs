@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 
     float  XPush = 2f;
     float  YPush = 50f;
-    float RandomFactor = 2.56f;
+    float RandomFactor = 4f;
     Rigidbody2D MyRigidBody;
 
      GameObject BrickOnCollision;

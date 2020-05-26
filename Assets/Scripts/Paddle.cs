@@ -11,14 +11,21 @@ public class Paddle : MonoBehaviour
     float TotalWidth = 35.55f;
     float MaxX = 33.05f;
     float PaddleWidth = 2.5f;
+    float mousePos;
 
     private void Update()
     {
-        var mousePos = Input.mousePosition.x / Screen.width * TotalWidth;
+        mousePos = Input.mousePosition.x / Screen.width * TotalWidth;
         Vector2 paddlePos = new Vector2(transform.position.x, transform.position.y);
-        paddlePos.x = Mathf.Clamp(mousePos, PaddleWidth - TotalWidth, MaxX);
+        paddlePos.x = Mathf.Clamp(GetXPos(), PaddleWidth - TotalWidth, MaxX);
         transform.position = paddlePos;
     }
 
-
+    private float GetXPos()
+    {
+        if (FindObjectOfType<GameStatus>().IsAutoPlayEnabled())
+            return FindObjectOfType<Ball>().transform.position.x;
+        else
+            return mousePos;
+    }
 }
