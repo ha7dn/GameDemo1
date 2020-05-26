@@ -8,25 +8,28 @@ public class Ball : MonoBehaviour
 
     // Config parameters
 
-    [SerializeField] Paddle paddle1;
-    [SerializeField] float xPush = 2f;
-    [SerializeField] float yPush = 10f;
-    [SerializeField]public GameObject brickOnCollision;
-    [SerializeField] AudioClip[] clips;
+    [SerializeField] Paddle Paddle1;
+
+    [SerializeField] AudioClip[] Clips;
+
+    [SerializeField] float  XPush = 2f;
+    [SerializeField] float  YPush = 25f;
+
+    [SerializeField]public GameObject BrickOnCollision;
 
     // State 
-    Vector2 paddleToBall;
-    bool hasGameStarted = false;
+    Vector2 PaddleToBall;
+    bool    HasGameStarted = false;
     // Start is called before the first frame update
     void Start()
     {
-        paddleToBall = transform.position - paddle1.transform.position;
+        PaddleToBall = transform.position - Paddle1.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!hasGameStarted)
+        if(!HasGameStarted)
             LockBallToPaddle();
 
         LaunchOnClick();
@@ -34,45 +37,45 @@ public class Ball : MonoBehaviour
 
     private void LaunchOnClick()
     {
-        if (Input.GetMouseButtonDown(0))
+
+        if (Input.GetMouseButtonDown(0) && !HasGameStarted)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(xPush, yPush);
-            hasGameStarted = true;
+            GetComponent<Rigidbody2D>().velocity = new Vector2(XPush, YPush);
+            HasGameStarted = true;
         }
     }
 
     private void LockBallToPaddle()
     {
-
-        var paddlePos = new Vector2(paddle1.transform.position.x, paddle1.transform.position.y);
-        transform.position = paddleToBall + paddlePos;
+        var paddlePos = new Vector2(Paddle1.transform.position.x, Paddle1.transform.position.y);
+        transform.position = PaddleToBall + paddlePos;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         AudioClip clip = null;
-        brickOnCollision = collision.gameObject;
-        if (hasGameStarted)
+        BrickOnCollision = collision.gameObject;
+        if (HasGameStarted)
         {
-            switch (brickOnCollision.tag)
+            switch (BrickOnCollision.tag)
             {
                 case "Brick1":
-                    clip = clips[0];
+                    clip = Clips[0];
                     break;
                 case "Brick2":
-                    clip = clips[1];
+                    clip = Clips[1];
                     break;
                 case "Brick3":
-                    clip = clips[2];
+                    clip = Clips[2];
                     break;
                 case "Brick4":
-                    clip = clips[3];
+                    clip = Clips[3];
                     break;
                 default:
-                    clip = clips[4];
+                    clip = Clips[4];
                     break;
             }
-            AudioSource.PlayClipAtPoint(clip, new Vector3(), 1f);
+            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, 1f);
         }
 
     }

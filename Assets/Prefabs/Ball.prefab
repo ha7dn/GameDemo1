@@ -133,13 +133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f819291bd0c0241b361aff57805329, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle1: {fileID: 0}
-  xPush: 2
-  yPush: 50
-  brickOnCollision: {fileID: 0}
-  clips:
+  Paddle1: {fileID: 0}
+  Clips:
   - {fileID: 8300000, guid: 1165e09cebf3d654dbbae6e85d38ff0f, type: 3}
   - {fileID: 8300000, guid: 742d1d694cd94c04f952622a900c7b28, type: 3}
   - {fileID: 8300000, guid: 229ad6b316552294984916a7f88c8a71, type: 3}
   - {fileID: 8300000, guid: 2e7203e704f2bae4abb5fabbd2994b66, type: 3}
   - {fileID: 8300000, guid: a72d350d1a8ff054e96edbdd98bf7a3b, type: 3}
+  XPush: 2
+  YPush: 50
+  BrickOnCollision: {fileID: 0}

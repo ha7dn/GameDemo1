@@ -8,15 +8,15 @@ public class Paddle : MonoBehaviour
     // 108px per Unit
 
     // Config parameters 
-    float totalWidth = 35.55f;
-    float maxX = 33.05f;
-    float paddleWidth = 2.5f;
+    float TotalWidth = 35.55f;
+    float MaxX = 33.05f;
+    float PaddleWidth = 2.5f;
 
     private void Update()
     {
-        var mousePos = Input.mousePosition.x / Screen.width * totalWidth;
+        var mousePos = Input.mousePosition.x / Screen.width * TotalWidth;
         Vector2 paddlePos = new Vector2(transform.position.x, transform.position.y);
-        paddlePos.x = Mathf.Clamp(mousePos, paddleWidth - totalWidth, maxX);
+        paddlePos.x = Mathf.Clamp(mousePos, PaddleWidth - TotalWidth, MaxX);
         transform.position = paddlePos;
     }
 
