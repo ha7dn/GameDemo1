@@ -143,3 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731482a92404fed4e9244f34d9346add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BrickVFX:
+  - {fileID: 100000, guid: f7cb2d769d1f94e4aa8a026ad6afbafe, type: 3}
+  - {fileID: 100000, guid: 944ea5cbc430c854b97d6620a49a75a2, type: 3}
+  - {fileID: 100000, guid: 9afa493e4964a424596ff03b6a4a8717, type: 3}
+  - {fileID: 100000, guid: dcb272bffea263a4cb11f24e5cd164f7, type: 3}
+  TimesHit: 0
+  HitSprite: {fileID: 21300000, guid: b39e30ae3fa3949408d7423461de9dba, type: 3}

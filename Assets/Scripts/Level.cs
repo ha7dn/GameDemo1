@@ -10,14 +10,6 @@ public class Level : MonoBehaviour
 
     SceneLoader sceneLoader;
 
-    private void Start()
-    {
-        sceneLoader = FindObjectOfType<SceneLoader>();
-        sceneLoader.LastScene = SceneManager.GetActiveScene();
-        sceneLoader.sceneName = sceneLoader.LastScene.name;
-
-    }
-
     public void CountBricks()
     {
         LevelBricks++;

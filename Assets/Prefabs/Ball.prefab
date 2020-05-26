@@ -140,6 +140,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 229ad6b316552294984916a7f88c8a71, type: 3}
   - {fileID: 8300000, guid: 2e7203e704f2bae4abb5fabbd2994b66, type: 3}
   - {fileID: 8300000, guid: a72d350d1a8ff054e96edbdd98bf7a3b, type: 3}
-  XPush: 2
-  YPush: 50
-  BrickOnCollision: {fileID: 0}
+  RandomFactor: 2.56

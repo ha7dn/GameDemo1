@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,18 +11,24 @@ public class Ball : MonoBehaviour
 
     [SerializeField] AudioClip[] Clips;
 
-    [SerializeField] float  XPush = 2f;
-    [SerializeField] float  YPush = 25f;
+    float  XPush = 2f;
+    float  YPush = 50f;
+    float RandomFactor = 2.56f;
+    Rigidbody2D MyRigidBody;
 
-    [SerializeField]public GameObject BrickOnCollision;
+     GameObject BrickOnCollision;
+
 
     // State 
     Vector2 PaddleToBall;
     bool    HasGameStarted = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
         PaddleToBall = transform.position - Paddle1.transform.position;
+        MyRigidBody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -40,7 +45,7 @@ public class Ball : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !HasGameStarted)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(XPush, YPush);
+            MyRigidBody.velocity = new Vector2(XPush, YPush);
             HasGameStarted = true;
         }
     }
@@ -53,6 +58,10 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var VelocityTweak = new Vector2(
+                            Random.Range(0, RandomFactor),
+                            Random.Range(0, RandomFactor));
+
         AudioClip clip = null;
         BrickOnCollision = collision.gameObject;
         if (HasGameStarted)
@@ -76,6 +85,7 @@ public class Ball : MonoBehaviour
                     break;
             }
             AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position, 1f);
+            MyRigidBody.velocity += VelocityTweak;
         }
 
     }
